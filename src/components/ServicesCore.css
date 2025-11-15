@@ -1,0 +1,185 @@
+.services-core {
+  padding: 120px 20px;
+  position: relative;
+  z-index: 2;
+}
+
+.services-core-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.services-core-title {
+  font-size: 32px;
+  text-align: center;
+  margin-bottom: 60px;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
+}
+
+.services-core-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+
+.service-core-card {
+  background: var(--bg-card);
+  padding: 50px 40px;
+  border: 2px solid rgba(255, 255, 255, 0.03);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  position: relative;
+  overflow: hidden;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 25px) 0,
+    100% 25px,
+    100% 100%,
+    25px 100%,
+    0 calc(100% - 25px)
+  );
+  box-shadow: 
+    12px 12px 24px var(--neumorphism-dark),
+    -6px -6px 12px var(--neumorphism-light),
+    inset -2px -2px 4px var(--neumorphism-dark),
+    inset 2px 2px 4px var(--neumorphism-light);
+  transform-style: preserve-3d;
+  cursor: pointer;
+  text-decoration: none;
+  display: block;
+}
+
+.service-core-card::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, 
+    transparent 30%, 
+    rgba(255, 255, 255, 0.02) 50%, 
+    transparent 70%);
+  transform: rotate(45deg);
+  transition: all 0.6s;
+  z-index: 0;
+}
+
+.service-core-card::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--orange-primary), var(--orange-light), var(--orange-primary));
+  background-size: 100% 200%;
+  transform: scaleY(0);
+  transition: transform 0.4s ease;
+  z-index: 1;
+}
+
+.service-core-card:hover::before {
+  left: 100%;
+}
+
+.service-core-card:hover::after {
+  transform: scaleY(1);
+}
+
+.service-core-card:hover {
+  background: var(--bg-card-hover);
+  transform: translateY(-20px) rotateX(5deg);
+  box-shadow: 
+    16px 16px 32px var(--neumorphism-dark),
+    -8px -8px 16px var(--neumorphism-light),
+    inset -2px -2px 4px var(--neumorphism-dark),
+    inset 2px 2px 4px var(--neumorphism-light);
+}
+
+.service-core-card-title {
+  font-size: 20px;
+  font-weight: 900;
+  color: var(--orange-light);
+  margin-bottom: 15px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+  transition: all 0.4s;
+}
+
+.service-core-card:hover .service-core-card-title {
+  transform: translateZ(10px);
+  color: var(--orange-primary);
+}
+
+.service-core-card-desc {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+  line-height: 1.7;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  transition: color 0.3s ease;
+  position: relative;
+  z-index: 2;
+}
+
+.service-core-card:hover .service-core-card-desc {
+  color: #ffffff;
+}
+
+.service-core-card-link {
+  font-size: 14px;
+  color: var(--orange-light);
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  transition: all 0.3s ease;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: var(--bg-card);
+  border: none;
+  box-shadow: 
+    8px 8px 16px var(--neumorphism-dark),
+    -4px -4px 8px var(--neumorphism-light),
+    inset -2px -2px 4px var(--neumorphism-dark),
+    inset 2px 2px 4px var(--neumorphism-light);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  position: relative;
+  z-index: 2;
+}
+
+.service-core-card-link:hover {
+  gap: 10px;
+  color: var(--orange-primary);
+  box-shadow: 
+    4px 4px 8px var(--neumorphism-dark),
+    -2px -2px 4px var(--neumorphism-light),
+    inset 3px 3px 6px var(--neumorphism-dark),
+    inset -2px -2px 4px var(--neumorphism-light);
+  transform: translateY(1px);
+  background: var(--bg-card-hover);
+}
+
+.service-core-card-link:active {
+  box-shadow: 
+    inset 4px 4px 8px var(--neumorphism-dark),
+    inset -3px -3px 6px var(--neumorphism-light);
+  transform: translateY(2px);
+}
+
+@media (max-width: 968px) {
+  .services-core-grid {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+  
+  .services-core {
+    padding: 80px 20px;
+  }
+}
+

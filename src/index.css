@@ -1,0 +1,105 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #0f0f0f;
+  --bg-card: #151515;
+  --bg-card-hover: #0f0f0f;
+  --orange-primary: #FF6600;
+  --orange-light: #FF8833;
+  --orange-dark: #FF4400;
+  --text-primary: #ffffff;
+  --text-secondary: #606060;
+  --text-muted: #404040;
+  --border-color: rgba(255, 102, 0, 0.4);
+  --neumorphism-light: rgba(255, 255, 255, 0.02);
+  --neumorphism-dark: rgba(0, 0, 0, 0.4);
+  --font-heading: 'Cabinet Grotesk', sans-serif;
+  --font-body: 'Cabinet Grotesk', sans-serif;
+  /* Cyber effects */
+  --orange-glow: rgba(255, 102, 0, 0.8);
+  --orange-glow-strong: rgba(255, 102, 0, 1);
+  --orange-shadow: 0 0 20px rgba(255, 102, 0, 0.6);
+  --orange-shadow-strong: 0 0 40px rgba(255, 102, 0, 0.8);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+  position: relative;
+  font-weight: 700;
+}
+
+/* Typography - Headings */
+h1, h2, h3, h4, h5, h6,
+.hero-title,
+.section-title,
+.cta-title,
+.pole-name,
+.expertise-card h3,
+.footer-brand h3 {
+  font-family: var(--font-heading);
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+}
+
+/* Typography - Body text */
+p, 
+.hero-subtitle,
+.section-subtitle,
+.cta-text,
+.pole-description,
+.expertise-card p,
+.footer-brand p,
+.footer-col a {
+  font-family: var(--font-body);
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+/* Animated background is now handled by JavaScript component */
+
+/* Smooth fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
