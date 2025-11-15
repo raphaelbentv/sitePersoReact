@@ -1,0 +1,42 @@
+.manifeste {
+  padding: 120px 40px;
+  background: var(--bg-secondary);
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.manifeste-content {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.manifeste-text {
+  font-size: 28px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  font-weight: 900;
+}
+
+.manifeste-tagline {
+  font-size: 20px;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.7);
+  font-weight: 400;
+}
+
+@media (max-width: 768px) {
+  .manifeste {
+    padding: 80px 20px;
+  }
+  
+  .manifeste-text {
+    font-size: 22px;
+  }
+  
+  .manifeste-tagline {
+    font-size: 18px;
+  }
+}
+

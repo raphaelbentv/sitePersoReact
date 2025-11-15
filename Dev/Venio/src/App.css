@@ -1,0 +1,20 @@
+/* Styles globaux pour l'application */
+* {
+  position: relative;
+  z-index: 1;
+  isolation: isolate;
+}
+
+/* Scroll reveal animations */
+.fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.fade-in {
+  animation: fadeIn 1s ease-out forwards;
+}
+
+.scale-in {
+  animation: scaleIn 0.6s ease-out forwards;
+}
+

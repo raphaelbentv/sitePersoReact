@@ -1,0 +1,193 @@
+.hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 40px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 1200px;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+  animation: fadeInUp 1s ease-out 0.3s both;
+}
+
+.hero-tagline {
+  font-size: 24px;
+  color: var(--orange-primary);
+  margin-bottom: 20px;
+  font-weight: 400;
+  letter-spacing: 1px;
+  animation: fadeInUp 0.8s ease-out 0.5s both;
+}
+
+.hero-description {
+  font-size: 20px;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  font-weight: 300;
+  animation: fadeInUp 1s ease-out 0.7s both;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%) translateY(-100%) rotate(45deg);
+  }
+  100% {
+    transform: translateX(100%) translateY(100%) rotate(45deg);
+  }
+}
+
+.hero-title {
+  font-size: clamp(48px, 8vw, 96px);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 4px;
+  margin-bottom: 30px;
+  color: #ffffff;
+  position: relative;
+  text-transform: uppercase;
+  text-shadow: 
+    0 0 10px rgba(255, 102, 0, 0.5),
+    0 0 20px rgba(255, 102, 0, 0.4),
+    0 0 30px rgba(255, 102, 0, 0.3),
+    0 0 40px rgba(255, 102, 0, 0.2),
+    0 0 70px rgba(255, 102, 0, 0.1);
+  animation: fadeInUp 1s ease-out 0.3s both, neonPulse 3s ease-in-out infinite;
+}
+
+@keyframes neonPulse {
+  0%, 100% {
+    text-shadow: 
+      0 0 10px rgba(255, 102, 0, 0.5),
+      0 0 20px rgba(255, 102, 0, 0.4),
+      0 0 30px rgba(255, 102, 0, 0.3),
+      0 0 40px rgba(255, 102, 0, 0.2),
+      0 0 70px rgba(255, 102, 0, 0.1);
+  }
+  50% {
+    text-shadow: 
+      0 0 15px rgba(255, 102, 0, 0.7),
+      0 0 25px rgba(255, 102, 0, 0.6),
+      0 0 35px rgba(255, 102, 0, 0.5),
+      0 0 50px rgba(255, 102, 0, 0.4),
+      0 0 80px rgba(255, 102, 0, 0.2);
+  }
+}
+
+.hero-title::after {
+  display: none;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+
+.hero-cta {
+  display: inline-block;
+  padding: 20px 60px;
+  background: var(--bg-card);
+  color: var(--orange-primary);
+  text-decoration: none;
+  font-weight: 900;
+  font-size: 18px;
+  transition: all 0.3s;
+  position: relative;
+  border: 3px solid var(--orange-primary);
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  backdrop-filter: blur(10px);
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+  box-shadow: 
+    12px 12px 24px var(--neumorphism-dark),
+    -6px -6px 12px var(--neumorphism-light),
+    inset -4px -4px 8px rgba(0, 0, 0, 0.3),
+    inset 4px 4px 8px rgba(255, 255, 255, 0.03);
+  animation: fadeInUp 1s ease-out 0.9s both;
+  overflow: hidden;
+}
+
+.hero-cta::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--orange-primary);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+  z-index: -1;
+  clip-path: polygon(
+    0 0,
+    calc(100% - 20px) 0,
+    100% 20px,
+    100% 100%,
+    20px 100%,
+    0 calc(100% - 20px)
+  );
+}
+
+.hero-cta:hover {
+  color: #000;
+  box-shadow: 
+    6px 6px 12px var(--neumorphism-dark),
+    -3px -3px 6px var(--neumorphism-light),
+    inset 4px 4px 8px rgba(0, 0, 0, 0.4),
+    inset -4px -4px 8px rgba(255, 255, 255, 0.02);
+  transform: translateY(-5px);
+}
+
+.hero-cta:hover::before {
+  transform: scaleX(1);
+}
+
+.hero-cta:active {
+  box-shadow: 
+    inset 6px 6px 12px var(--neumorphism-dark),
+    inset -4px -4px 8px var(--neumorphism-light);
+  transform: translateY(3px);
+}
+
+.gradient-orb {
+  display: none;
+}
+
+@keyframes orbFloat {
+  0%, 100% {
+    transform: translate(-50%, -50%) translate(0, 0);
+  }
+  33% {
+    transform: translate(-50%, -50%) translate(30px, -30px);
+  }
+  66% {
+    transform: translate(-50%, -50%) translate(-20px, 20px);
+  }
+}
+
+@keyframes orbPulse {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.1);
+  }
+}
+
