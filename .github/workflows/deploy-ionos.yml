@@ -34,17 +34,22 @@ jobs:
       - name: ✅ Vérifier le build
         run: npm run deploy:check
 
-      - name: 🚀 Déployer sur Ionos via SFTP
-        uses: wlixcc/SFTP-Deploy-Action@v1.2.6
+      - name: 🚀 Déployer sur Ionos via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          port: 22
-          local_path: './dist/'
-          remote_path: ${{ secrets.FTP_SERVER_DIR }}
-          sftp_only: true
-          strip_components: 0
+          protocol: ftp
+          port: 21
+          local-dir: ./dist/
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          dangerous-clean-slate: true
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **node_modules/**
+            node_modules/**
 
       - name: ✅ Déploiement terminé
         run: |
