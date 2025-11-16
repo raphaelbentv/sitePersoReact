@@ -2,11 +2,19 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import VantaBackground from '../components/VantaBackground'
 import DotsOverlay from '../components/DotsOverlay'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 import './APropos.css'
 
 const APropos = () => {
   return (
     <>
+      <SEO 
+        title="À Propos"
+        description="Venio construit des systèmes qui durent. Lucidité, efficacité et ambition. Architecture sur mesure, identités cohérentes et stratégies actionnables pour entreprises premium."
+        keywords="à propos Venio, agence digitale Paris, équipe Venio, expertise technique, vision"
+      />
+      <StructuredData type="apropos" />
       <VantaBackground />
       <DotsOverlay />
       <div className="apropos-page">

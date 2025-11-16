@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import VantaBackground from '../components/VantaBackground'
 import DotsOverlay from '../components/DotsOverlay'
 import MathCaptcha from '../components/MathCaptcha'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 import './ServicesPage.css'
 
 const ServicesDeveloppement = () => {
@@ -25,6 +27,12 @@ const ServicesDeveloppement = () => {
 
   return (
     <>
+      <SEO 
+        title="Développement Web"
+        description="Sites web premium, plateformes métier complexes, SaaS scalables et outils sur mesure. Architecture sur mesure, code propriétaire, systèmes pensés pour durer et évoluer."
+        keywords="développement web, développement sur mesure, SaaS, plateforme web, architecture web, React, développement Paris"
+      />
+      <StructuredData type="service-developpement" />
       <VantaBackground />
       <DotsOverlay />
       <div className="services-page">

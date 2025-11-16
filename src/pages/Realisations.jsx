@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import VantaBackground from '../components/VantaBackground'
 import DotsOverlay from '../components/DotsOverlay'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 import './Realisations.css'
 
 const Realisations = () => {
@@ -143,6 +145,12 @@ const Realisations = () => {
 
   return (
     <>
+      <SEO 
+        title="Réalisations"
+        description="Découvrez nos réalisations : sites web premium, plateformes métier, SaaS et projets de communication. Cabinet d'avocats, écoles, studios créatifs et entreprises premium."
+        keywords="réalisations Venio, portfolio, projets, sites web, développement, communication, études de cas"
+      />
+      <StructuredData type="realisations" />
       <VantaBackground />
       <DotsOverlay />
       <div className="realisations-page">
@@ -411,7 +419,7 @@ const Realisations = () => {
                   </>
                 ) : (
                   <>
-                    <div className="projet-image">
+                    <div className="projet-image" aria-label={`Image du projet ${projet.titre}`}>
                       <div className="projet-placeholder">
                         {projet.titre}
                       </div>

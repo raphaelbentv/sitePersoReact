@@ -1,11 +1,17 @@
 import React from 'react'
 import VantaBackground from '../components/VantaBackground'
 import DotsOverlay from '../components/DotsOverlay'
+import SEO from '../components/SEO'
 import './Legal.css'
 
 const Legal = () => {
   return (
     <>
+      <SEO 
+        title="Mentions Légales"
+        description="Mentions légales du site Venio. Informations sur l'éditeur, l'hébergeur et les données personnelles."
+        noindex={true}
+      />
       <VantaBackground />
       <DotsOverlay />
       <div className="legal-page">

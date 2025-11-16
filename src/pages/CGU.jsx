@@ -1,11 +1,17 @@
 import React from 'react'
 import VantaBackground from '../components/VantaBackground'
 import DotsOverlay from '../components/DotsOverlay'
+import SEO from '../components/SEO'
 import './CGU.css'
 
 const CGU = () => {
   return (
     <>
+      <SEO 
+        title="Conditions Générales d'Utilisation"
+        description="Conditions générales d'utilisation du site Venio. Modalités et conditions d'utilisation du site web."
+        noindex={true}
+      />
       <VantaBackground />
       <DotsOverlay />
       <div className="cgu-page">

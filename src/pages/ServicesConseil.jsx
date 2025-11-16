@@ -1,11 +1,19 @@
 import React from 'react'
 import VantaBackground from '../components/VantaBackground'
 import DotsOverlay from '../components/DotsOverlay'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 import './ServicesPage.css'
 
 const ServicesConseil = () => {
   return (
     <>
+      <SEO 
+        title="Conseil Stratégique"
+        description="Positionnement, vision, architecture digitale globale et stratégie IA. Audit sans filtre, analyse lucide et recommandations actionnables pour transformer votre entreprise."
+        keywords="conseil stratégique, transformation digitale, audit stratégique, consulting, stratégie IA, positionnement"
+      />
+      <StructuredData type="service-conseil" />
       <VantaBackground />
       <DotsOverlay />
       <div className="services-page">

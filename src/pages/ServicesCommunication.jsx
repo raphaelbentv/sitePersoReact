@@ -1,11 +1,19 @@
 import React from 'react'
 import VantaBackground from '../components/VantaBackground'
 import DotsOverlay from '../components/DotsOverlay'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 import './ServicesPage.css'
 
 const ServicesCommunication = () => {
   return (
     <>
+      <SEO 
+        title="Communication & Branding"
+        description="Identités visuelles cohérentes, stratégies éditoriales structurées, contenus premium et storytelling. Direction artistique pour entreprises premium et marques modernes."
+        keywords="communication, branding, identité visuelle, stratégie éditoriale, storytelling, direction artistique"
+      />
+      <StructuredData type="service-communication" />
       <VantaBackground />
       <DotsOverlay />
       <div className="services-page">

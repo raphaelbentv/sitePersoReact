@@ -2,6 +2,8 @@ import React from 'react'
 import VantaBackground from '../components/VantaBackground'
 import DotsOverlay from '../components/DotsOverlay'
 import PoleCard from '../components/PoleCard'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 import './PolesPage.css'
 
 const PolesPage = () => {
@@ -28,6 +30,12 @@ const PolesPage = () => {
 
   return (
     <>
+      <SEO 
+        title="Nos Pôles"
+        description="Venio opère à travers trois entités spécialisées : DECISIO (communication juridique), CREATIO (supports de cours) et FORMATIO (formations professionnelles). Expertise approfondie et cohérence stratégique."
+        keywords="DECISIO, CREATIO, FORMATIO, communication juridique, supports de cours, formations professionnelles"
+      />
+      <StructuredData type="poles" />
       <VantaBackground />
       <DotsOverlay />
       <div className="poles-page">

@@ -3,6 +3,8 @@ import emailjs from '@emailjs/browser'
 import VantaBackground from '../components/VantaBackground'
 import DotsOverlay from '../components/DotsOverlay'
 import MathCaptcha from '../components/MathCaptcha'
+import SEO from '../components/SEO'
+import StructuredData from '../components/StructuredData'
 import './Contact.css'
 
 const Contact = () => {
@@ -85,6 +87,12 @@ const Contact = () => {
 
   return (
     <>
+      <SEO 
+        title="Contact"
+        description="Contactez Venio pour discuter de votre projet. Formulaire de contact sécurisé ou email direct à contact@venio.paris. Réponse sous 24h."
+        keywords="contact Venio, formulaire contact, devis, consultation gratuite"
+      />
+      <StructuredData type="contact" />
       <VantaBackground />
       <DotsOverlay />
       <div className="contact-page">
