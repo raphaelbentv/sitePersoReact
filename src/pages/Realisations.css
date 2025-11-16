@@ -1053,14 +1053,20 @@
 .medical-logo-icon {
   width: 40px;
   height: 40px;
-  background: #00a8cc;
-  border-radius: 50%;
+  background: linear-gradient(135deg, #00a8cc 0%, #007a99 100%);
+  border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   color: #ffffff;
-  font-size: 20px;
-  font-weight: 700;
+  box-shadow: 0 4px 12px rgba(0, 168, 204, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.medical-logo-icon svg {
+  width: 20px;
+  height: 20px;
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
 }
 
 .medical-logo-text {

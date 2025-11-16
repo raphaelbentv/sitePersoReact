@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import emailjs from '@emailjs/browser'
 import VantaBackground from '../components/VantaBackground'
 import DotsOverlay from '../components/DotsOverlay'
 import MathCaptcha from '../components/MathCaptcha'
@@ -6,15 +7,80 @@ import './Contact.css'
 
 const Contact = () => {
   const [captchaVerified, setCaptchaVerified] = useState(false)
+  const [formData, setFormData] = useState({
+    prenom: '',
+    nom: '',
+    email: '',
+    entreprise: '',
+    sujet: '',
+    message: ''
+  })
+  const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target
+    setFormData(prev => ({
+      ...prev,
+      [name]: value
+    }))
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault()
     if (!captchaVerified) {
       alert('Veuillez compléter la vérification mathématique')
       return
     }
-    // Ici vous pouvez ajouter la logique d'envoi du formulaire
-    alert('Formulaire envoyé avec succès !')
+
+    setIsSubmitting(true)
+
+    try {
+      // Configuration EmailJS
+      // IMPORTANT: Remplacez ces valeurs par vos clés EmailJS
+      // 1. Créez un compte sur https://www.emailjs.com
+      // 2. Créez un service email (Gmail, Outlook, etc.)
+      // 3. Créez un template email
+      // 4. Récupérez votre Public Key, Service ID et Template ID
+      
+      const serviceId = 'YOUR_SERVICE_ID' // À remplacer
+      const templateId = 'YOUR_TEMPLATE_ID' // À remplacer
+      const publicKey = 'YOUR_PUBLIC_KEY' // À remplacer
+
+      // Initialiser EmailJS avec votre clé publique
+      emailjs.init(publicKey)
+
+      // Préparer les paramètres du template
+      const templateParams = {
+        from_name: `${formData.prenom} ${formData.nom}`,
+        from_email: formData.email,
+        to_email: 'contact@venio.paris',
+        subject: `Contact Venio - ${formData.sujet || 'Sans sujet'}`,
+        entreprise: formData.entreprise || 'Non renseignée',
+        message: formData.message,
+        sujet: formData.sujet || 'Non renseigné'
+      }
+
+      // Envoi de l'email
+      await emailjs.send(serviceId, templateId, templateParams)
+
+      // Réinitialiser le formulaire
+      setFormData({
+        prenom: '',
+        nom: '',
+        email: '',
+        entreprise: '',
+        sujet: '',
+        message: ''
+      })
+      setCaptchaVerified(false)
+      setIsSubmitting(false)
+      
+      alert('Votre message a été envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.')
+    } catch (error) {
+      console.error('Erreur lors de l\'envoi:', error)
+      alert('Une erreur est survenue lors de l\'envoi. Veuillez réessayer ou nous contacter directement à contact@venio.paris')
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -33,18 +99,7 @@ const Contact = () => {
               <h2>Informations</h2>
               <div className="info-item">
                 <h3>Email</h3>
-                <a href="mailto:contact@venio.fr">contact@venio.fr</a>
-              </div>
-              <div className="info-item">
-                <h3>Prendre rendez-vous</h3>
-                <a 
-                  href="https://calendly.com" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="calendly-link"
-                >
-                  Réserver un créneau →
-                </a>
+                <a href="mailto:contact@venio.paris">contact@venio.paris</a>
               </div>
             </div>
 
@@ -52,26 +107,66 @@ const Contact = () => {
               <h2>Formulaire de contact</h2>
               <form className="contact-form" onSubmit={handleSubmit}>
                 <div className="form-row">
-                  <input type="text" placeholder="Prénom" required />
-                  <input type="text" placeholder="Nom" required />
+                  <input 
+                    type="text" 
+                    name="prenom"
+                    placeholder="Prénom" 
+                    value={formData.prenom}
+                    onChange={handleChange}
+                    required 
+                  />
+                  <input 
+                    type="text" 
+                    name="nom"
+                    placeholder="Nom" 
+                    value={formData.nom}
+                    onChange={handleChange}
+                    required 
+                  />
                 </div>
-                <input type="email" placeholder="Email" required />
-                <input type="text" placeholder="Entreprise" />
-                <select className="form-select" required>
+                <input 
+                  type="email" 
+                  name="email"
+                  placeholder="Email" 
+                  value={formData.email}
+                  onChange={handleChange}
+                  required 
+                />
+                <input 
+                  type="text" 
+                  name="entreprise"
+                  placeholder="Entreprise" 
+                  value={formData.entreprise}
+                  onChange={handleChange}
+                />
+                <select 
+                  className="form-select" 
+                  name="sujet"
+                  value={formData.sujet}
+                  onChange={handleChange}
+                  required
+                >
                   <option value="">Sujet</option>
-                  <option value="communication">Communication & Branding</option>
-                  <option value="developpement">Développement</option>
-                  <option value="conseil">Conseil Stratégique</option>
-                  <option value="autre">Autre</option>
+                  <option value="Communication & Branding">Communication & Branding</option>
+                  <option value="Développement">Développement</option>
+                  <option value="Conseil Stratégique">Conseil Stratégique</option>
+                  <option value="Autre">Autre</option>
                 </select>
-                <textarea placeholder="Message" rows="6" required></textarea>
+                <textarea 
+                  placeholder="Message" 
+                  name="message"
+                  value={formData.message}
+                  onChange={handleChange}
+                  rows="6" 
+                  required
+                ></textarea>
                 <MathCaptcha onVerify={setCaptchaVerified} />
                 <button 
                   type="submit" 
                   className="form-submit"
-                  disabled={!captchaVerified}
+                  disabled={!captchaVerified || isSubmitting}
                 >
-                  Envoyer
+                  {isSubmitting ? 'Envoi...' : 'Envoyer'}
                 </button>
               </form>
             </div>

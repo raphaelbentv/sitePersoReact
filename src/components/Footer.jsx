@@ -28,7 +28,7 @@ const Footer = () => {
         <div className="footer-col">
           <h4>Social</h4>
           <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="mailto:contact@venio.fr">Email</a>
+          <a href="mailto:contact@venio.paris">Email</a>
         </div>
       </div>
       
@@ -36,6 +36,8 @@ const Footer = () => {
         <p>© 2025 Venio — Lucidité, efficacité, ambition</p>
         <div className="footer-legal">
           <Link to="/legal">Mentions légales</Link>
+          <span> | </span>
+          <Link to="/cgu">CGU</Link>
           <span> | </span>
           <Link to="/legal">CGV</Link>
         </div>

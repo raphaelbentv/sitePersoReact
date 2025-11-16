@@ -11,12 +11,25 @@ npm run dev    # Lancer le serveur (localhost:5501)
 ```
 
 ### Pour déployer sur IONOS (venio.paris)
+
+**Option 1 : Déploiement automatique (recommandé) 🤖**
 ```bash
-npm run build:ionos    # Build + génération .htaccess
+git add .
+git commit -m "Description des modifications"
+git push origin master
+# Le site se déploie automatiquement en 2-5 minutes !
+```
+
+👉 **📖 Guide déploiement automatique : [DEPLOY_AUTOMATIQUE.md](./DEPLOY_AUTOMATIQUE.md)** (configuration une seule fois, puis automatique)
+
+**Option 2 : Déploiement manuel via FTP**
+```bash
+npm run deploy:ionos   # Build + vérification + instructions
 # Puis uploader le contenu de dist/ via FTP sur IONOS
 ```
 
-👉 **Voir la section [🌐 Déploiement en ligne](#-déploiement-en-ligne) pour les instructions détaillées**
+👉 **📖 Guide déploiement manuel : [DEPLOY_IONOS.md](./DEPLOY_IONOS.md)** (instructions détaillées étape par étape)
+👉 **Voir aussi la section [🌐 Déploiement en ligne](#-déploiement-en-ligne) pour plus de détails techniques**
 
 ## 🚀 Installation
 
@@ -404,6 +417,10 @@ npm run dev              # Lance le serveur de développement (localhost:5501)
 npm run build            # Build standard (génère aussi .htaccess via postbuild)
 npm run build:ionos      # Build optimisé pour IONOS avec .htaccess explicite
 npm run preview          # Prévisualise la version de production localement
+
+# Déploiement Ionos
+npm run deploy:ionos     # Build + vérification + instructions de déploiement
+npm run deploy:check      # Vérifie que le build est prêt pour déploiement
 
 # Les scripts postbuild s'exécutent automatiquement après npm run build
 ```

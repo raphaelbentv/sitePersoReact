@@ -7,20 +7,20 @@ import './PolesPage.css'
 const PolesPage = () => {
   const poles = [
     {
-      name: 'CREATIO',
-      description: 'Éducation premium',
-      link: 'https://creatio.paris',
-      external: true
-    },
-    {
       name: 'DECISIO',
       description: 'Communication juridique',
       link: 'https://decisio.paris',
       external: true
     },
     {
+      name: 'CREATIO',
+      description: 'Supports de cours',
+      link: 'https://creatio.paris',
+      external: true
+    },
+    {
       name: 'FORMATIO',
-      description: 'Formation Qualiopi',
+      description: 'Formations professionnelles',
       link: 'https://formatio.paris',
       external: true
     }

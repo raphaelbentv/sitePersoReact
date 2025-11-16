@@ -11,6 +11,7 @@ import Realisations from './pages/Realisations'
 import APropos from './pages/APropos'
 import Contact from './pages/Contact'
 import Legal from './pages/Legal'
+import CGU from './pages/CGU'
 import './App.css'
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
         <Route path="/a-propos" element={<APropos />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/legal" element={<Legal />} />
+        <Route path="/cgu" element={<CGU />} />
       </Routes>
       <Footer />
     </>

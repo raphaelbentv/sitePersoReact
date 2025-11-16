@@ -12,7 +12,7 @@ const Hero = () => {
           Stratégie. Développement. Communication.
         </p>
         <p className="hero-description">
-          Nous construisons ce qui tient debout.
+          Nous construisons des solutions qui marchent, vraiment.
         </p>
         <Link to="/services" className="hero-cta">Découvrir nos services</Link>
       </div>

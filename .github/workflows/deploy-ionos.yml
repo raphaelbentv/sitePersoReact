@@ -1,0 +1,58 @@
+name: 🚀 Déploiement automatique sur Ionos
+
+on:
+  push:
+    branches:
+      - master  # Déploie automatiquement quand vous poussez sur master
+    paths-ignore:
+      - 'README.md'
+      - 'DEPLOY_IONOS.md'
+      - '.gitignore'
+  workflow_dispatch:  # Permet de déclencher manuellement depuis GitHub
+
+jobs:
+  deploy:
+    name: Build et déploiement sur Ionos
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v4
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📥 Installer les dépendances
+        run: npm ci
+
+      - name: 🏗️ Build du projet
+        run: npm run build:ionos
+
+      - name: ✅ Vérifier le build
+        run: npm run deploy:check
+
+      - name: 🚀 Déployer sur Ionos via SFTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: sftp  # Utilise SFTP au lieu de FTP
+          port: 22  # Port SFTP standard
+          local-dir: ./dist/
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          dangerous-clean-slate: true  # Nettoie le répertoire avant upload
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **node_modules/**
+            node_modules/**
+
+      - name: ✅ Déploiement terminé
+        run: |
+          echo "✅ Site déployé avec succès sur https://venio.paris"
+          echo "🔄 Les modifications peuvent prendre quelques minutes à apparaître"
+
