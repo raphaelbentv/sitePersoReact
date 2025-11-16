@@ -2,6 +2,87 @@
 
 Guide de référence complet pour configurer et déployer sur Ionos via GitHub Actions.
 
+> ✅ **Configuration validée et testée** - Cette configuration a été testée avec succès sur Ionos.
+
+## ⚡ Configuration validée (testée et fonctionnelle)
+
+Voici la configuration exacte qui fonctionne pour Ionos :
+
+### Workflow GitHub Actions (testé et validé)
+
+```yaml
+name: 🚀 Déploiement automatique sur Ionos
+
+on:
+  push:
+    branches:
+      - master
+    paths-ignore:
+      - 'README.md'
+      - 'DEPLOY_IONOS.md'
+      - '.gitignore'
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build et déploiement sur Ionos
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: 📥 Checkout du code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # ⚠️ OBLIGATOIRE
+
+      - name: 📦 Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm'
+
+      - name: 📥 Installer les dépendances
+        run: npm ci
+
+      - name: 🏗️ Build du projet
+        run: npm run build:ionos
+
+      - name: ✅ Vérifier le build
+        run: npm run deploy:check
+
+      - name: 🚀 Déployer sur Ionos via SFTP
+        uses: milanmk/actions-file-deployer@master
+        with:
+          remote-protocol: 'sftp'  # ⚠️ Entre guillemets simples
+          remote-host: ${{ secrets.FTP_SERVER }}
+          remote-user: ${{ secrets.FTP_USERNAME }}
+          remote-password: ${{ secrets.FTP_PASSWORD }}
+          remote-port: 22  # ⚠️ Port SFTP standard Ionos
+          remote-path: ${{ secrets.FTP_SERVER_DIR }}
+          local-path: './dist/'
+          sync: 'full'  # ⚠️ Entre guillemets simples, pas 'delta' ni true
+
+      - name: ✅ Déploiement terminé
+        run: |
+          echo "✅ Site déployé avec succès sur https://venio.paris"
+          echo "🔄 Les modifications peuvent prendre quelques minutes à apparaître"
+```
+
+### Secrets GitHub (configuration Ionos)
+
+| Secret | Format exact | Exemple Ionos | ⚠️ Règles |
+|--------|-------------|---------------|----------|
+| `FTP_SERVER` | `home[ID].1and1-data.host` | `home353429004.1and1-data.host` | Pas de `sftp://`, pas de `//` |
+| `FTP_USERNAME` | Identifiant SFTP | `u123456789` | Tel quel, sans espaces |
+| `FTP_PASSWORD` | Mot de passe SFTP | `votre_mot_de_passe` | Tel quel, sans espaces |
+| `FTP_SERVER_DIR` | `/dossier/` | `/VenioReact/` | Commence ET finit par `/` |
+
+### Paramètres Ionos validés
+
+- **Protocole** : `SFTP` (recommandé par Ionos)
+- **Port** : `22` (port SFTP standard)
+- **Action GitHub** : `milanmk/actions-file-deployer@master`
+- **Synchronisation** : `'full'` (synchronisation complète)
+
 ## 🔐 Configuration des secrets GitHub
 
 ### Secrets requis
@@ -84,22 +165,28 @@ jobs:
           sync: 'full'
 ```
 
-### Paramètres SFTP détaillés
+### Paramètres SFTP détaillés (Ionos)
 
-#### Action : `milanmk/actions-file-deployer@master`
+#### Action : `milanmk/actions-file-deployer@master` ✅ Testée et validée
 
-**Paramètres valides** :
+**Paramètres valides pour Ionos** :
 
-| Paramètre | Type | Valeur | Description |
-|-----------|------|--------|-------------|
-| `remote-protocol` | string | `'sftp'` ou `'ftp'` | Protocole de connexion |
-| `remote-host` | string | `${{ secrets.FTP_SERVER }}` | Adresse du serveur |
-| `remote-user` | string | `${{ secrets.FTP_USERNAME }}` | Identifiant |
-| `remote-password` | string | `${{ secrets.FTP_PASSWORD }}` | Mot de passe |
-| `remote-port` | number | `22` (SFTP) ou `21` (FTP) | Port de connexion |
-| `remote-path` | string | `${{ secrets.FTP_SERVER_DIR }}` | Chemin distant (doit commencer et finir par `/`) |
-| `local-path` | string | `'./dist/'` | Chemin local des fichiers à déployer |
-| `sync` | string | `'full'` ou `'delta'` | Type de synchronisation |
+| Paramètre | Type | Valeur Ionos | ⚠️ Format exact | Description |
+|-----------|------|--------------|-----------------|-------------|
+| `remote-protocol` | string | `'sftp'` | Entre guillemets simples | Protocole SFTP (recommandé Ionos) |
+| `remote-host` | string | `${{ secrets.FTP_SERVER }}` | Format : `home[ID].1and1-data.host` | Serveur Ionos (sans `sftp://`) |
+| `remote-user` | string | `${{ secrets.FTP_USERNAME }}` | Identifiant SFTP Ionos | Identifiant fourni par Ionos |
+| `remote-password` | string | `${{ secrets.FTP_PASSWORD }}` | Mot de passe SFTP Ionos | Mot de passe fourni par Ionos |
+| `remote-port` | number | `22` | Port SFTP standard | Port 22 pour SFTP (Ionos) |
+| `remote-path` | string | `${{ secrets.FTP_SERVER_DIR }}` | Format : `/dossier/` | Chemin distant (commence et finit par `/`) |
+| `local-path` | string | `'./dist/'` | Chemin relatif | Dossier local à déployer |
+| `sync` | string | `'full'` | Entre guillemets simples | Synchronisation complète (recommandé) |
+
+**⚠️ Points critiques pour Ionos** :
+- `remote-protocol` : **DOIT** être `'sftp'` (entre guillemets simples)
+- `remote-port` : **DOIT** être `22` pour SFTP Ionos
+- `sync` : **DOIT** être `'full'` (entre guillemets simples), pas `true` ni `'delta'`
+- `remote-path` : **DOIT** commencer et finir par `/` (ex: `/VenioReact/`)
 
 **⚠️ Paramètres invalides** :
 - ❌ `delete-remote-files: true` (n'existe pas)
@@ -136,30 +223,38 @@ Si SFTP ne fonctionne pas, vous pouvez utiliser FTP :
     sync: 'full'
 ```
 
-## 📋 Informations Ionos standard
+## 📋 Informations Ionos standard (validées)
 
-### Protocoles supportés
+### Protocoles supportés par Ionos
 
-| Protocole | Port | Sécurité | Recommandé |
-|-----------|------|----------|------------|
-| SFTP | 22 | ✅ Élevée | ⭐ Oui |
-| FTP | 21 | ⚠️ Moyenne | Si SFTP indisponible |
-| FTPS | 990 | ✅ Élevée | Alternative |
+| Protocole | Port | Sécurité | Recommandé Ionos | Status |
+|-----------|------|----------|------------------|--------|
+| **SFTP** | **22** | ✅ Élevée | ⭐ **Oui (recommandé)** | ✅ Testé et validé |
+| FTP | 21 | ⚠️ Moyenne | Si SFTP indisponible | ⚠️ Non testé |
+| FTPS | 990 | ✅ Élevée | Alternative | ⚠️ Non testé |
 
-### Répertoires web courants
+**⚠️ Ionos recommande SFTP (port 22)** - C'est la configuration validée et testée.
 
-| Répertoire | Usage |
-|------------|-------|
-| `/httpdocs/` | Site principal (le plus courant) |
-| `/www/` | Alternative à httpdocs |
-| `/public_html/` | Certains hébergements |
-| `/VenioReact/` | Dossier personnalisé (votre cas) |
+### Répertoires web courants Ionos
 
-### Format des serveurs Ionos
+| Répertoire | Usage | Format |
+|------------|-------|--------|
+| `/httpdocs/` | Site principal (le plus courant) | `/httpdocs/` |
+| `/www/` | Alternative à httpdocs | `/www/` |
+| `/public_html/` | Certains hébergements | `/public_html/` |
+| `/VenioReact/` | Dossier personnalisé | `/VenioReact/` |
 
-- Format : `home[ID].1and1-data.host`
-- Exemple : `home353429004.1and1-data.host`
-- Ne pas inclure : `sftp://`, `ftp://`, `//`
+**⚠️ Format obligatoire** : Le répertoire **DOIT** commencer et finir par `/`
+
+### Format des serveurs Ionos (validé)
+
+- **Format standard** : `home[ID].1and1-data.host`
+- **Exemple validé** : `home353429004.1and1-data.host`
+- **⚠️ Ne JAMAIS inclure** :
+  - ❌ `sftp://` au début
+  - ❌ `ftp://` au début
+  - ❌ `//` au début
+  - ✅ Juste le nom du serveur : `home353429004.1and1-data.host`
 
 ## 🐛 Erreurs courantes et solutions
 
@@ -267,9 +362,9 @@ Avant de déployer, vérifiez :
 - [ ] `fetch-depth: 0` est présent dans le checkout
 - [ ] La connexion fonctionne avec Transmit
 
-## 🔄 Workflow complet fonctionnel
+## 🔄 Workflow complet fonctionnel (testé et validé)
 
-Voici le workflow complet et testé :
+Voici le workflow complet qui a été testé avec succès sur Ionos :
 
 ```yaml
 name: 🚀 Déploiement automatique sur Ionos
