@@ -11,7 +11,7 @@
 }
 
 .poles-hero h1 {
-  font-size: clamp(56px, 8vw, 96px);
+  font-size: clamp(32px, 6vw, 96px);
   font-weight: 900;
   color: rgba(255, 255, 255, 0.95);
   margin-bottom: 20px;
@@ -23,6 +23,9 @@
     0 0 40px rgba(255, 102, 0, 0.2),
     0 0 70px rgba(255, 102, 0, 0.1);
   animation: neonPulse 3s ease-in-out infinite;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 @keyframes neonPulse {
@@ -156,10 +159,27 @@
     grid-template-columns: 1fr;
     gap: 30px;
   }
+}
+
+@media (max-width: 768px) {
+  .poles-hero {
+    padding: 60px 15px 40px;
+  }
   
   .poles-hero h1 {
-    font-size: 48px;
-    font-weight: 900;
+    font-size: clamp(28px, 8vw, 48px);
+    letter-spacing: 1px;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    padding: 0 10px;
+  }
+  
+  .poles-subtitle {
+    font-size: 18px;
+  }
+  
+  .poles-intro {
+    padding: 30px 20px;
   }
 }
 
