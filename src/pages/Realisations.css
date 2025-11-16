@@ -345,7 +345,7 @@
   text-align: center;
 }
 
-.avocat-hero h1 {
+.avocat-hero h2 {
   font-size: 64px;
   font-weight: 300;
   color: #1a1a1a;
@@ -438,7 +438,7 @@
   align-items: center;
 }
 
-.ecole-text h1 {
+.ecole-text h2 {
   font-size: 42px;
   font-weight: 900;
   color: #ffffff;
@@ -544,7 +544,7 @@
   z-index: 2;
 }
 
-.studio-hero h1 {
+.studio-hero h2 {
   font-size: 56px;
   font-weight: 900;
   color: #ffffff;
@@ -632,7 +632,7 @@
   align-items: center;
 }
 
-.saas-text h1 {
+.saas-text h2 {
   font-size: 46px;
   font-weight: 900;
   color: #ffffff;
@@ -821,7 +821,7 @@
   padding: 80px 40px 50px;
 }
 
-.restaurant-content h1 {
+.restaurant-content h2 {
   font-family: 'Georgia', serif;
   font-size: 56px;
   font-weight: 400;
@@ -927,7 +927,7 @@
   padding: 20px 0;
 }
 
-.archi-text h1 {
+.archi-text h2 {
   font-size: 36px;
   font-weight: 300;
   color: #1a1a1a;
@@ -1010,7 +1010,7 @@
   text-align: center;
 }
 
-.luxe-content h1 {
+.luxe-content h2 {
   font-size: 68px;
   font-weight: 300;
   color: #daa520;
@@ -1112,7 +1112,7 @@
   align-items: center;
 }
 
-.medical-text h1 {
+.medical-text h2 {
   font-size: 48px;
   font-weight: 700;
   color: #00334e;
@@ -1195,11 +1195,11 @@
     grid-template-columns: 1fr;
   }
   
-  .restaurant-content h1 {
+  .restaurant-content h2 {
     font-size: 42px;
   }
   
-  .luxe-content h1 {
+  .luxe-content h2 {
     font-size: 52px;
   }
   

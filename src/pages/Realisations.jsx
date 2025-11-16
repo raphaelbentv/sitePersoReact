@@ -190,7 +190,7 @@ const Realisations = () => {
                             </div>
                           </div>
                           <div className="avocat-hero">
-                            <h1>Expertise &<br />Confiance</h1>
+                            <h2>Expertise &<br />Confiance</h2>
                             <p>Cabinet d'avocats spécialisé en droit des affaires et fiscalité depuis 1987</p>
                             <div className="avocat-btn">Prendre rendez-vous</div>
                           </div>
@@ -209,7 +209,7 @@ const Realisations = () => {
                           </div>
                           <div className="ecole-content">
                             <div className="ecole-text">
-                              <h1>Construisez votre avenir</h1>
+                              <h2>Construisez votre avenir</h2>
                               <p>École supérieure de commerce et de management digital</p>
                               <div className="ecole-cta">Découvrir nos formations</div>
                             </div>
@@ -247,7 +247,7 @@ const Realisations = () => {
                             </div>
                           </div>
                           <div className="studio-hero">
-                            <h1>We craft<br /><span className="studio-gradient">bold experiences</span></h1>
+                            <h2>We craft<br /><span className="studio-gradient">bold experiences</span></h2>
                             <p>Creative studio specializing in brand identity, motion design & digital experiences</p>
                             <div className="studio-cta">View our work</div>
                           </div>
@@ -269,7 +269,7 @@ const Realisations = () => {
                           </div>
                           <div className="saas-content">
                             <div className="saas-text">
-                              <h1>Analytics,<br /><span className="saas-gradient">simplified</span></h1>
+                              <h2>Analytics,<br /><span className="saas-gradient">simplified</span></h2>
                               <p>The all-in-one platform for tracking, analyzing and optimizing your SaaS metrics in real-time.</p>
                               <div className="saas-cta">Start free trial</div>
                             </div>
@@ -302,7 +302,7 @@ const Realisations = () => {
                           </div>
                           <div className="restaurant-content">
                             <div className="restaurant-decorative"></div>
-                            <h1>haute<br />gastronomie</h1>
+                            <h2>haute<br />gastronomie</h2>
                             <p>2 Étoiles Michelin</p>
                             <div className="restaurant-btn">Réserver une table</div>
                           </div>
@@ -322,7 +322,7 @@ const Realisations = () => {
                           <div className="archi-grid">
                             <div className="archi-image"></div>
                             <div className="archi-text">
-                              <h1>Architecture<br />contemporaine</h1>
+                              <h2>Architecture<br />contemporaine</h2>
                               <p>Conception d'espaces uniques et durables depuis 2008</p>
                               <div className="archi-btn">Découvrir nos projets</div>
                             </div>
@@ -343,7 +343,7 @@ const Realisations = () => {
                           </div>
                           <div className="luxe-content">
                             <div className="luxe-decorative-line"></div>
-                            <h1>ESSENCE</h1>
+                            <h2>ESSENCE</h2>
                             <p className="luxe-subtitle">Haute Parfumerie</p>
                             <div className="luxe-btn">Découvrir la collection</div>
                           </div>
@@ -369,7 +369,7 @@ const Realisations = () => {
                           </div>
                           <div className="medical-hero">
                             <div className="medical-text">
-                              <h1>Votre santé,<br />notre priorité</h1>
+                              <h2>Votre santé,<br />notre priorité</h2>
                               <p>Clinique médicale moderne spécialisée en médecine préventive et soins personnalisés</p>
                               <div className="medical-cta">Prendre rendez-vous</div>
                             </div>
