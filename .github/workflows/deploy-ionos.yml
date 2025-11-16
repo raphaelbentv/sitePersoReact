@@ -34,22 +34,17 @@ jobs:
       - name: ✅ Vérifier le build
         run: npm run deploy:check
 
-      - name: 🚀 Déployer sur Ionos via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+      - name: 🚀 Déployer sur Ionos via SFTP
+        uses: milanmk/actions-file-deployer@master
         with:
-          server: ${{ secrets.FTP_SERVER }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          port: 21
-          local-dir: ./dist/
-          server-dir: ${{ secrets.FTP_SERVER_DIR }}
-          dangerous-clean-slate: true
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **node_modules/**
-            node_modules/**
+          remote-protocol: 'sftp'
+          remote-host: ${{ secrets.FTP_SERVER }}
+          remote-user: ${{ secrets.FTP_USERNAME }}
+          remote-password: ${{ secrets.FTP_PASSWORD }}
+          remote-port: 22
+          remote-path: ${{ secrets.FTP_SERVER_DIR }}
+          local-path: './dist/'
+          delete-remote-files: true
 
       - name: ✅ Déploiement terminé
         run: |
